@@ -30,9 +30,7 @@ def read_cifar(directory):
 def split_dataset(data, labels, split):
     size = np.shape(data)[0]
     test_size = int((1 - split) * size)
-
     test_indices = random.sample(range(size), test_size)
-    #print(test_indices, len(test_indices))
 
     data_test = data[test_indices]
     labels_test = labels[test_indices]
@@ -43,11 +41,6 @@ def split_dataset(data, labels, split):
     return data_train, labels_train, data_test, labels_test
 
 
-
-
-
-
-
 if __name__ == "__main__":
 
     file = "data/data_batch_1"
@@ -56,10 +49,9 @@ if __name__ == "__main__":
 
     data, labels = read_cifar("data")
     #print(np.shape(data), np.shape(labels))
-
     print(np.shape(data))
-    a, b, c, d = split_dataset(data, labels, 0.25)
 
+    a, b, c, d = split_dataset(data, labels, 0.25)
     print(np.shape(a), np.shape(b), np.shape(c), np.shape(d))
 
 
