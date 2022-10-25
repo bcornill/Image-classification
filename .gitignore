@@ -162,3 +162,4 @@ cython_debug/
 # Initial data
 data/
 settings.json
+.DS_Store

@@ -2,8 +2,17 @@ import pickle
 import numpy as np
 import random as rd
 
-# Read data and labels from a cifar batch file using Pickle module
 def read_cifar_batch(batchfile):
+    """Returns the data and labels from a CIFAR file  using pickle module.
+
+    Args:
+        batchfile (string): The name of the batchfile.
+
+    Returns:
+        data (np.ndarray(np.float32)): The matrix data where each line represents a objects.
+        labels (np.ndarray(np.int64)): The vector containing the corresponding label for each data row in data.
+    """
+
     with open(batchfile, 'rb') as fo:
         dict = pickle.load(fo, encoding='bytes')
     data = np.array(dict[b'data'], dtype=np.float32)
@@ -12,8 +21,17 @@ def read_cifar_batch(batchfile):
     return data, labels
 
 
-# Concatenate and return all data from the specified directory 
 def read_cifar(directory):
+    """Concatenates and returns all data from the specified directory.
+
+    Args:
+        directory (string): The name of the directory containing the CIFAR files.
+
+    Returns:
+        data (np.ndarray(np.float32)): The matrix data where each line represents a object.
+        labels (np.ndarray(np.int64)): The vector containing the corresponding label for each data row in data.
+    """
+
     # Initialize data and labels with test data
     path_test = directory + "/test_batch"
     data, labels = read_cifar_batch(path_test)
@@ -28,8 +46,21 @@ def read_cifar(directory):
     return data, labels
 
 
-# Randomly split the entire dataset into a training and testing dataset
 def split_dataset(data, labels, split_factor):
+    """Randomly splits the entire dataset into a train and test dataset according to a factor.
+
+    Args:
+        data (np.ndarray(np.float32)): The matrix data where each line represents an object.
+        labels (np.ndarray(np.int64)): The vector containing the corresponding label for each data row in data.
+        split_factor (np.float32): The size factor between data_train and data.
+
+    Returns:
+        data_train (np.ndarray(np.float32)): The train dataset.
+        labels_train (np.ndarray(np.int64)): The train labels for each train data.
+        data_test (np.ndarray(np.float32)): The test dataset.
+        labels_test (np.ndarray(np.int64)): The test labels for each test data.
+    """
+
     size = np.shape(data)[0]
     test_size = int((1 - split_factor) * size)
     test_indices = rd.sample(range(size), test_size)
