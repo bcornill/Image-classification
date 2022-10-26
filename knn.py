@@ -15,7 +15,7 @@ def distance_matrix(M1, M2):
 
     M1_sq_sum = np.sum(M1*M1, axis=1, keepdims=True)
     M2_sq_sum = np.sum(M2*M2, axis=1, keepdims=True)
-    product = -2 * np.matmul(M1, M2.T)
+    product = np.matmul(M1, M2.T)
 
     dists = np.sqrt(M1_sq_sum + M2_sq_sum.T - 2 * product)
     return dists
@@ -63,22 +63,21 @@ def evaluate_knn(data_train, labels_train, data_test, labels_test, k):
 
 if __name__ == "__main__":
     
-    """
     # Test evaluate_knn on smaller datasets to establish algorithm correctness and closure
     data, labels = read_cifar("data")
     split_factor = 0.75
     a, b, c, d = split_dataset(data, labels, split_factor)
     a, b, c, d = a[:4500], b[:4500], c[:1500], d[:1500]
-    k = 5
+    k = 7
 
     prec = evaluate_knn(a, b, c, d, k)
     print("Précision de l'algorithme knn : " + str(round(prec, 1)) + "%")
-    """
     
     # Plot the accuracy of the KNN algorithm on the full datasets while changing the number of neighbors considered
     data, labels = read_cifar("data")
     split_factor = 0.9
     a, b, c, d = split_dataset(data, labels, split_factor)
+    #a, b, c, d = a[:4500], b[:4500], c[:1500], d[:1500]
 
     k = []
     acc = []
@@ -89,9 +88,8 @@ if __name__ == "__main__":
         acc.append(evaluate_knn(a, b, c, d, i))
     
     plt.plot(k, acc)
-    plt.xlabel("Nombre de plus proches voisins")
-    plt.ylabel("Précision (en %)")
-    plt.title("Efficacité de l'algorithme KNN en fonction du nombre de voisins considérés")
+    plt.xlabel("Number of k-nearest neighbors")
+    plt.ylabel("Accuracy (in %)")
+    plt.title("Accuracy of the KNN algorithm depending on the number of neighbors considered")
     plt.show()
-    
 
