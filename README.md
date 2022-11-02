@@ -1,92 +1,56 @@
 # Image classification
 
+Following [Quentin Gallouédec's tutorial](https://gitlab.ec-lyon.fr/qgalloue/image_classification_instructions), we implement 2 image classification algorithms in Python:
+- k-nearest neighbors (KNN)
+- artificial neural network (NN)
 
+The [CIFAR-10 dataset](https://www.cs.toronto.edu/~kriz/cifar.html) is used to test these algorithms. 
 
-## Getting started
+## Description of the algorithms
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+### K-nearest neighbors (KNN)
+K-nearest neighbors (KNN) algorithm is a classifier using the distance of an element of the test dataset from all of the train dataset. Here, we use the Euclidian L2 distance to compare 2 elements given their pixel information. 
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+Then, the labels of the k-nearest neighbors are grouped and counted and the most frequent one is selected as the predicted label. This allows to classify the test data in one of the categories of the train data. 
 
-## Add your files
+<figure>
+<img src=https://www.jcchouinard.com/wp-content/uploads/2021/08/image-8.png.webp alt="Trulli" style="width:100%">
+<figcaption align = "center"><b>KNN algorithm diagram</b></figcaption>
+</figure>
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+_Source : https://www.jcchouinard.com/k-nearest-neighbors/_
 
-```
-cd existing_repo
-git remote add origin https://gitlab.ec-lyon.fr/bcornill/image-classification.git
-git branch -M main
-git push -uf origin main
-```
+### Artificial neural network (NN)
+Artificial neural networks are Machine Learning algorithms and more specifically Deep Learning algorithms. The idea behind is biomimicry, and they reproduce the functionning of a human brain.
 
-## Integrate with your tools
+Neural networks implement layers of neurons connected to each other distributed in an input layer, hidden layers and an output layer. Each node connects with the nodes of the layers before and after its own, and a weight is attributed to each bond. Each node has a threshold value and an activation function, so that if the weighted inputs are greater than the threshold, it is activated and passes data according to its activation function (often chosen as a sigmoid function) to the next layer of the network.
 
-- [ ] [Set up project integrations](https://gitlab.ec-lyon.fr/bcornill/image-classification/-/settings/integrations)
+<figure>
+<img src=https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Neural_network_example.svg/1920px-Neural_network_example.svg.png alt="Trulli" style="width:100%">
+<figcaption align = "center"><b>Neural Network algorithm diagram</b></figcaption>
+</figure>
 
-## Collaborate with your team
+_Source : https://en.wikipedia.org/wiki/Neural_network_
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Automatically merge when pipeline succeeds](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
-
-## Test and Deploy
-
-Use the built-in continuous integration in GitLab.
-
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
-
-***
-
-# Editing this README
-
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
-
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
-
-## Name
-Choose a self-explaining name for your project.
-
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
-
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
-
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+Artificial neural networks rely on iterations to find the optimum weights affected to each neuron connection. Once optimum meta-parameters are found, they are powerful tools that can by applied to a wide range of test datasets, considering they are similar enough in content. 
 
 ## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+
+### Requirements
+This project requires [python3](https://www.python.org/), and common libraries installations :
+
+- [NumPy](https://numpy.org/) for fast matrix computation
+- [Matplotlib](https://matplotlib.org/) for result visualization
+- [Pickle](https://docs.python.org/3/library/pickle.html) for Python object serialization
 
 ## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+Functions can be called by running each script in a terminal. An example of use is implemented in each script to show the process leading to a coherent and interpretable result of the algorithms.
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
-
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
-
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+## Support and contribution
+If you'd like to suggest any corrections or improvements or need help understanding the algorithms or results, feel free to contribute by [opening an issue](https://gitlab.ec-lyon.fr/bcornill/image-classification/-/issues/new).
 
 ## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
+Implementation of the algorithms from the tutorial was made by [Barnabé Cornilleau](https://gitlab.ec-lyon.fr/bcornill) under the supervision of Emmanuel Dellandrea.
 
 ## Project status
 If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
