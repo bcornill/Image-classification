@@ -258,7 +258,7 @@ if __name__ == "__main__":
     split_factor = 0.9
     a, b, c, d = split_dataset(data, labels, split_factor)
 
-    # Define the network meta-parameters and train it
+    # Define the network hyper-parameters and train it
     d_h = 64
     learning_rate = 0.1
     num_epoch = 100

@@ -32,7 +32,7 @@ Neural networks implement layers of neurons connected to each other distributed 
 
 _Source : https://en.wikipedia.org/wiki/Neural_network_
 
-Artificial neural networks rely on iterations to find the optimum weights affected to each neuron connection. Once optimum meta-parameters are found, they are powerful tools that can by applied to a wide range of test datasets, considering they are similar enough in content. 
+Artificial neural networks rely on iterations to find the optimum weights affected to each neuron connection. Once optimum hyper-parameters are found, they are powerful tools that can by applied to a wide range of test datasets, admitting that they are similar enough in content. 
 
 ## Installation
 
